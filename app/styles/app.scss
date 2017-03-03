@@ -76,3 +76,16 @@ main {
 .bottom-border {
   border-bottom: $b-brand-border;
 }
+
+.modal {
+  background: $c-brand-white;
+  position: fixed;
+  top: 40%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  padding: 1rem;
+
+  &__btn {
+    float: right;
+    }
+}
