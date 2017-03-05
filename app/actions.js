@@ -25,12 +25,32 @@ export function clearModal(data) {
 
 // Thunk
 
-export function seriesInfoSearch() {
+export function seriesInfoSearch(name) {
   return (next) => {
-    fetch('http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=TITLE&apikey=APIKEY')
+    fetch('http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=${name}&apikey=APIKEY')
       .then(r => r.json())
       .then((data) => {
         next(seriesInfoLoadComplete(data));
+      });
+  };
+}
+
+export function charactersFindForId(id) {
+  return (next) => {
+    fetch('http://gateway.marvel.com/v1/public/series/${id}/characters?apikey=APIKEY')
+      .then(r => r.json())
+      .then((data) => {
+        next(charactersLoadComplete(data));
+      });
+  };
+}
+
+export function comicsFindForId(id) {
+  return (next) => {
+    fetch('http://gateway.marvel.com/v1/public/series/${id}/comics?apikey=APIKEY')
+      .then(r => r.json())
+      .then((data) => {
+        next(comicsLoadComplete(data));
       });
   };
 }
