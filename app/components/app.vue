@@ -14,11 +14,17 @@
       </nav>
     </header>
     <main>
-      <div class="sidebar">
-        <img v-bind:src="http://placehold.it/250x250" alt="">
-        <h2>Chara Name</h2>
-        <h3>Chara Data</h3>
-        <h2 class="bottom-border">Creators</h2>
+      <!-- Add a if statement around the left side of your application so that it only shows up when seriesInfo is filled in -->
+      <!-- Using Vue templating to fill in the series info sidebar -->
+      <div class="sidebar" v-if="series">
+        <!-- Show img for series -->
+        <img v-bind:src="series.img" alt="">
+        <!-- Show series name -->
+        <h2>{{series.name}}</h2>
+        <!-- Show series start and end date -->
+        <h3>{{series.date}}</h3>
+        <!-- Show list of series creators -->
+        <h2 class="bottom-border">{{series.creators}}</h2>
         <ul>
           <li>Name</li>
           <li>Name</li>
@@ -33,19 +39,6 @@
             <div class="row-item">
               <img src="http://placehold.it/100x100" alt="">
               <p>Chara Name</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Chara Name</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Chara Name</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Chara Name</p>
-            </div>
           </div>
         </div>
         <div class="grid-item">
@@ -74,15 +67,25 @@
 </div>
 </template>
 
-<!-- Update HTML for Vue templating for sidebar -->
 <script>
 import store from '../store';
 import { seriesInfoLoadComplete, findAllCharacters, findAllComics, setModal, clearModal  } from '../actions';
 
+import characterItem from './character-item.vue';
+
 export default {
   data() {
     return {
+      series: this.$select('series'),
+      character: this.$select('character'),
+      comic: this.$select('comic'),
     };
+  },
+
+  created() {
+    store.dispatch(seriesInfoLoadComplete());
+    store.dispatch(findAllCharacters());
+    store.dispatch(findAllComics());
   },
 
   methods: {
