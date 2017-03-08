@@ -2,16 +2,16 @@
 // from the functions you've created
 import { combineReducers } from 'redux';
 
-import { series } from './reducers/series-info';
-import { character } from './reducers/character-data';
-import { comic } from './reducers/comic-data';
-import { modalSet } from './reducers/modal';
-import { modalClear } from './reducers/modal';
+import seriesInfo from './reducers/series-info';
+import characterData from './reducers/character-data';
+import comicData from './reducers/comic-data';
+import modal from './reducers/modal';
+// import modalClear from './reducers/modal';
 
 export default combineReducers({
-  series,
-  character,
-  comic,
-  modalSet,
-  modalClear,
+  seriesInfo,
+  characterData,
+  comicData,
+  modal,
+  // modalClear,
 });

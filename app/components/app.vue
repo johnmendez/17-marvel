@@ -18,7 +18,7 @@
       <!-- Using Vue templating to fill in the series info sidebar -->
       <div class="sidebar" v-if="series">
         <!-- Show img for series -->
-        <img v-bind:src="series.img" alt="">
+        <img :src=" `${seriesInfo.thumbnail.path}.${seriesInfo.thumbnail.extension}` " alt="">
         <!-- Show series name -->
         <h2>{{series.name}}</h2>
         <!-- Show series start and end date -->

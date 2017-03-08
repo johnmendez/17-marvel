@@ -25,7 +25,7 @@ export function clearModal(data) {
 
 // Thunk
 
-export function seriesInfoSearch(name) {
+export function seriesInfoSearch(id) {
   return (next) => {
     fetch('http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=${name}&apikey=APIKEY')
       .then(r => r.json())
@@ -37,6 +37,7 @@ export function seriesInfoSearch(name) {
 
 export function charactersFindForId(id) {
   return (next) => {
+    // change this
     fetch('http://gateway.marvel.com/v1/public/series/${id}/characters?apikey=APIKEY')
       .then(r => r.json())
       .then((data) => {
