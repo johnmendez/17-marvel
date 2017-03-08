@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import Thunk from 'redux-thunk';
 import Revue from 'revue';
 import Vue from 'vue';
 
@@ -12,7 +12,7 @@ const store = createStore(
   reducer,
   initialState,
   composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(Thunk)
   )
 );
 
