@@ -21,6 +21,8 @@ $b-brand-border: 1px solid #000;
 
 img {
   border-radius: $m-brand-border-radius;
+  width: 100%;
+  height: auto;
 }
 
 header {
@@ -74,11 +76,6 @@ main {
 .row-item {
   max-width: 10rem;
   margin-right: 2rem;
-
-  img {
-    min-width: 100%;
-    height: auto;
-  }
 }
 
 .bottom-border {

@@ -33,27 +33,14 @@
         <div class="grid-item">
           <h1 class="bottom-border">Characters</h1>
           <div class="row">
+            <!-- Loop through characters and create a character-item for each one passing in the character data -->
             <character-item v-for="character in characterData" v-bind:character="character"> </character-item>
         </div>
         <div class="grid-item">
           <h1 class="bottom-border">Comics</h1>
           <div class="row">
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Comic</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Comic</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Comic</p>
-            </div>
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Comic</p>
-            </div>
+            <!-- Loop through comics and create a comic-item for each one passing in the comic data -->
+            <comic-item v-for="comic in comicData" v-bind:comic="comic"> </comic-item>
           </div>
         </div>
       </div>
@@ -66,10 +53,12 @@ import store from '../store';
 import { seriesInfoSearch  } from '../actions';
 
 import characterItem from './character-item.vue';
+import comicItem from './comic-item.vue';
 
 export default {
   components: {
-    characterItem
+    characterItem,
+    comicItem,
   },
 
   data() {
