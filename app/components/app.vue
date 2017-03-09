@@ -70,7 +70,7 @@ export default {
   },
 
   created() {
-    store.dispatch(seriesInfoSearch('Thor'));
+    store.dispatch(seriesInfoSearch('Spider-Man'));
   },
 
   methods: {

@@ -44,11 +44,12 @@ nav {
 
 main {
   display: flex;
-  margin: 2rem 2rem 2rem 15%;
+  margin: 2rem 15%;
   font-family: $c-brand-font-special;
 }
 
 .sidebar {
+  min-width: 20%;
   img {
     height: auto;
     min-height: 100%;
@@ -63,6 +64,7 @@ main {
 }
 
 .grid {
+  min-width: 80%;
   margin-left: 2rem;
   flex-grow: 1;
 }
