@@ -16,30 +16,24 @@
     <main>
       <!-- Add a if statement around the left side of your application so that it only shows up when seriesInfo is filled in -->
       <!-- Using Vue templating to fill in the series info sidebar -->
-      <div class="sidebar" v-if="series">
+      <div class="sidebar" v-if="seriesInfo">
         <!-- Show img for series -->
         <img :src=" `${seriesInfo.thumbnail.path}.${seriesInfo.thumbnail.extension}` " alt="">
         <!-- Show series name -->
-        <h2>{{series.name}}</h2>
+        <h2>{{seriesInfo.title}}</h2>
         <!-- Show series start and end date -->
-        <h3>{{series.date}}</h3>
+        <h3>{{seriesInfo.startYear}} - {{seriesInfo.endYear}}</h3>
         <!-- Show list of series creators -->
-        <h2 class="bottom-border">{{series.creators}}</h2>
+        <h2 class="bottom-border">Creators</h2>
         <ul>
-          <li>Name</li>
-          <li>Name</li>
-          <li>Name</li>
-          <li>Name</li>
+          <li v-for="creator in seriesInfo.creators.items">{{creator.name}}</li>
         </ul>
       </div>
       <div class="grid">
         <div class="grid-item">
           <h1 class="bottom-border">Characters</h1>
           <div class="row">
-            <div class="row-item">
-              <img src="http://placehold.it/100x100" alt="">
-              <p>Chara Name</p>
-          </div>
+            <character-item v-for="character in characterData" v-bind:character="character"> </character-item>
         </div>
         <div class="grid-item">
           <h1 class="bottom-border">Comics</h1>
@@ -69,23 +63,25 @@
 
 <script>
 import store from '../store';
-import { seriesInfoLoadComplete, findAllCharacters, findAllComics, setModal, clearModal  } from '../actions';
+import { seriesInfoSearch  } from '../actions';
 
 import characterItem from './character-item.vue';
 
 export default {
+  components: {
+    characterItem
+  },
+
   data() {
     return {
-      series: this.$select('series'),
-      character: this.$select('character'),
-      comic: this.$select('comic'),
+      seriesInfo: this.$select('seriesInfo'),
+      characterData: this.$select('characterData'),
+      comicData: this.$select('comicData'),
     };
   },
 
   created() {
-    store.dispatch(seriesInfoLoadComplete());
-    store.dispatch(findAllCharacters());
-    store.dispatch(findAllComics());
+    store.dispatch(seriesInfoSearch('Thor'));
   },
 
   methods: {
